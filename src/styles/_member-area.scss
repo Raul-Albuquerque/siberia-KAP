@@ -1,0 +1,15 @@
+@use 'variables';
+
+.member-area {
+  background-color: red;
+
+
+  &__video {
+    background-color: blue;
+
+    &__item {
+      
+    }
+  }
+
+}

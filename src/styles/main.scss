@@ -1,0 +1,147 @@
+
+@use 'variables';
+@use 'member-area';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  background-color: variables.$bg;
+}
+
+header {
+  padding: 24px 0;
+
+  @media (max-width: 640px) {
+    padding: 12px 0;
+  }
+}
+
+.container {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (max-width: 640px) {
+    width: 80%;
+    gap: 8px;
+  }
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 300;
+  margin-top: 24px;
+
+  @media (max-width: 640px) {
+    margin-top: 8px;
+  }
+}
+
+.subtitle{
+  font-size: 24px;
+  font-weight: 400;
+
+  &--start {
+    text-align: start;
+  }
+}
+
+.video-section  {
+  margin-top: 16px;
+
+  &__video {
+    width: 300px;
+    height: 420px;
+    border-radius: 60% / 60%;
+    object-fit: cover;
+    border: 2px solid black;
+    margin-bottom: 8px;
+  }
+
+  &__button {
+    width: 260px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 10px;
+    border: 2px solid variables.$black;
+    background-color: variables.$blue;
+    color: variables.$black;
+    margin-bottom: 24px;
+
+    &:hover {
+      background-color: transparent;
+      color: variables.$blue;
+    }
+
+    &--loading {
+      border: 2px solid variables.$black;
+      background-color: variables.$yellow;
+
+      &:hover {
+        background-color: variables.$yellow;
+        color: variables.$black;
+      }
+    }
+  }
+}
+
+
+.video-section__button--loading::after {
+  content: "loading";
+  display: inline-block;
+  animation: loadingDots 4s steps(4, end) infinite;
+}
+
+@keyframes loadingDots {
+  0%, 25% {
+    content: "loading";
+  }
+  50% {
+    content: "loading.";
+  }
+  75% {
+    content: "loading.."
+  }
+  100% {
+    content: "loading...";
+  }
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 0, 0, 0.8);
+  animation: scan 3s linear infinite;
+  z-index: 1;
+}
+
+.video-section__content {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes scan {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
